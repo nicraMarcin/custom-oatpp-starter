@@ -16,12 +16,13 @@ add_library(${project_name}-lib
 ## link libs
 
 #find_package(oatpp 1.1.0 REQUIRED)
-add_subdirectory(lib/oatpp)
 add_subdirectory(lib/oatpp-libressl)
+add_subdirectory(lib/oatpp)
+
 
 target_link_libraries(${project_name}-lib
-        PUBLIC oatpp
         PUBLIC oatpp-libressl
+        PUBLIC oatpp
 )
 
 target_include_directories(${project_name}-lib PUBLIC src)

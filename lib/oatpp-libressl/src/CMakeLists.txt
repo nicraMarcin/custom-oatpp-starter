@@ -1,4 +1,6 @@
 
+include_directories(../../../lib/libressl-3.2.1/include ../../../lib/libressl-3.2.1/include/openssl)
+
 add_library(${OATPP_THIS_MODULE_NAME}
         oatpp-libressl/Callbacks.cpp
         oatpp-libressl/Callbacks.hpp
@@ -31,10 +33,10 @@ target_include_directories(${OATPP_THIS_MODULE_NAME}
 )
 
 target_link_libraries(${OATPP_THIS_MODULE_NAME}
-        ${LIBRESLL}
-        #PUBLIC TLS
-        #PUBLIC SSL
-        #PUBLIC Crypto
+       ${LIBRESLL}
+        # PUBLIC TLS
+        # PUBLIC SSL
+        # PUBLIC Crypto
 )
 
 #######################################################################################################
