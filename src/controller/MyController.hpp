@@ -7,6 +7,11 @@
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
 
+#include <oatpp-libressl/Config.hpp>
+#include <oatpp-libressl/client/ConnectionProvider.hpp>
+#include <oatpp/web/client/HttpRequestExecutor.hpp>
+
+
 #include OATPP_CODEGEN_BEGIN(ApiController) //<-- Begin Codegen
 
 /**
@@ -24,6 +29,14 @@ public:
 public:
   
   ENDPOINT("GET", "/", root) {
+
+auto config = oatpp::libressl::Config::createShared();
+  tls_config_insecure_noverifycert(config->getTLSConfig());
+  tls_config_insecure_noverifyname(config->getTLSConfig());
+
+  auto connectionProvider = oatpp::libressl::client::ConnectionProvider::createShared(config, "gemmei.ftp.acc.umu.se", 443);
+  auto requestExecutor = oatpp::web::client::HttpRequestExecutor::createShared(connectionProvider);
+
     auto dto = MyDto::createShared();
     dto->statusCode = 200;
     dto->message = "Hello World!";
