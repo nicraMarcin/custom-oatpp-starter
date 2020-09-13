@@ -31,9 +31,10 @@ target_include_directories(${OATPP_THIS_MODULE_NAME}
 )
 
 target_link_libraries(${OATPP_THIS_MODULE_NAME}
-        PUBLIC LibreSSL::TLS
-        PUBLIC LibreSSL::SSL
-        PUBLIC LibreSSL::Crypto
+        ${LIBRESLL}
+        #PUBLIC TLS
+        #PUBLIC SSL
+        #PUBLIC Crypto
 )
 
 #######################################################################################################

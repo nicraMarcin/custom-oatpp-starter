@@ -109,22 +109,23 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/module")
 #find_package(LibreSSL 3.0.0 REQUIRED)
 
 find_library(LIBRESLL libressl lib/libressl-3.2.1)
-message(${LIBRESLL})
+
 ExternalProject_Add(libressl_project
-        SOURCE_DIR ${CMAKE_SOURCE_DIR}/lib/libressl
+        SOURCE_DIR ${CMAKE_SOURCE_DIR}/lib/libressl-3.2.1
         CONFIGURE_COMMAND "./configure"
         BUILD_COMMAND make
         INSTALL_COMMAND ""
         PREFIX=${CMAKE_CURRENT_BINARY_DIR}/libressl
         )
 
+include_directories(lib/libressl-3.2.1/include lib/libressl-3.2.1/include/openssl)
 
-message("LIBRESSL_INCLUDE_DIR=${LIBRESSL_INCLUDE_DIR}")
-message("LIBRESSL_TLS_LIBRARY=${LIBRESSL_TLS_LIBRARY}")
-message("LIBRESSL_SSL_LIBRARY=${LIBRESSL_SSL_LIBRARY}")
-message("LIBRESSL_CRYPTO_LIBRARY=${LIBRESSL_CRYPTO_LIBRARY}")
-message("LIBRESSL_LIBRARIES=${LIBRESSL_LIBRARIES}")
-message("LIBRESSL_VERSION=${LIBRESSL_VERSION}")
+#message("LIBRESSL_INCLUDE_DIR=${LIBRESSL_INCLUDE_DIR}")
+#message("LIBRESSL_TLS_LIBRARY=${LIBRESSL_TLS_LIBRARY}")
+#message("LIBRESSL_SSL_LIBRARY=${LIBRESSL_SSL_LIBRARY}")
+#message("LIBRESSL_CRYPTO_LIBRARY=${LIBRESSL_CRYPTO_LIBRARY}")
+#message("LIBRESSL_LIBRARIES=${LIBRESSL_LIBRARIES}")
+#message("LIBRESSL_VERSION=${LIBRESSL_VERSION}")
 
 message("\n############################################################################\n")
 
