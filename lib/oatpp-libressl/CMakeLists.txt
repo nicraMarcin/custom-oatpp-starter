@@ -1,4 +1,7 @@
+include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
+
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
+
 
 ###################################################################################################
 ## These variables are passed to oatpp-module-install.cmake script
@@ -103,7 +106,18 @@ message("## ${OATPP_THIS_MODULE_NAME} module. Resolving dependencies...\n")
 include(FindPkgConfig)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/module")
 
-find_package(LibreSSL 3.0.0 REQUIRED)
+#find_package(LibreSSL 3.0.0 REQUIRED)
+
+find_library(LIBRESLL libressl lib/libressl-3.2.1)
+message(${LIBRESLL})
+ExternalProject_Add(libressl_project
+        SOURCE_DIR ${CMAKE_SOURCE_DIR}/lib/libressl
+        CONFIGURE_COMMAND "./configure"
+        BUILD_COMMAND make
+        INSTALL_COMMAND ""
+        PREFIX=${CMAKE_CURRENT_BINARY_DIR}/libressl
+        )
+
 
 message("LIBRESSL_INCLUDE_DIR=${LIBRESSL_INCLUDE_DIR}")
 message("LIBRESSL_TLS_LIBRARY=${LIBRESSL_TLS_LIBRARY}")
