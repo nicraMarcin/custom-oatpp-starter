@@ -25,7 +25,7 @@ target_link_libraries(${project_name}-lib
         PUBLIC oatpp
 )
 
-target_include_directories(${project_name}-lib PUBLIC src)
+target_include_directories(${project_name}-lib PUBLIC src lib/libressl-3.2.1/include)
 
 ## add executables
 
