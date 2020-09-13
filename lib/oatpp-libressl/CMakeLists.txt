@@ -108,14 +108,14 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/module")
 
 #find_package(LibreSSL 3.0.0 REQUIRED)
 
-find_library(LIBRESLL libressl lib/libressl-3.2.1)
+# find_library(LIBRESLL libressl lib/libressl-3.2.1)
 
-ExternalProject_Add(libressl_project
+ExternalProject_Add(LIBRESLL
         SOURCE_DIR ${CMAKE_SOURCE_DIR}/lib/libressl-3.2.1
-        CONFIGURE_COMMAND "./configure"
+        CONFIGURE_COMMAND "${CMAKE_SOURCE_DIR}/lib/libressl-3.2.1/configure"
         BUILD_COMMAND make
         INSTALL_COMMAND ""
-        PREFIX=${CMAKE_CURRENT_BINARY_DIR}/libressl
+        PREFIX=${CMAKE_CURRENT_BINARY_DIR}/libressl-3-2.1
         )
 
 include_directories(lib/libressl-3.2.1/include lib/libressl-3.2.1/include/openssl)
